@@ -5,9 +5,12 @@ import random
 
 class ChooseBot(Plugin):
     @command.new("choose", help="Have the bot choose for you")
-    @command.argument("choose_text", pass_raw=True)
-    async def echo_handler(self, evt: MessageEvent, choose_text: str) -> None:
+    @command.argument("choices", pass_raw=True, required=True)
+    async def choose(self, evt: MessageEvent, choices: str) -> None:
         await evt.mark_read()
-        choose_array = choose_text.split(",")
-        choose_reply = random.choice(choose_array).strip()
-        await evt.reply(f"I choose **{choose_reply}**.")
+        if not choices:
+            await evt.respond("Usage: !choose <choice1, choice2, choice3>")
+            return
+        choices_array = choices.split(",")
+        choice = random.choice(choices_array).strip()
+        await evt.reply(f"I choose **{choice}**.")
