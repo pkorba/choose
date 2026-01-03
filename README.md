@@ -7,5 +7,5 @@ A maubot for Matrix messaging that randomly chooses one of the options presented
 ## Usage
 List out choices, separated with a `,` character.  
 ```
-[p]choose option1, option2, option3
+!choose option1, option2, option3
 ```
